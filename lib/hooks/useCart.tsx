@@ -3,6 +3,8 @@ import { toast } from "react-hot-toast";
 import { persist, createJSONStorage } from "zustand/middleware";
 
 interface CartItem {
+  _id: any;
+  price: any;
   item: ProductType;
   quantity: number;
   color?: string; // ? means optional

@@ -13,7 +13,7 @@ const OrderConfirmation = () => {
         className="border rounded-lg text-body-bold bg-white py-3 p-5 mt-10 hover:bg-black hover:text-white"
         onClick={()=>(router.push("/"))}
       >
-        Confirm Order
+        Back to Shopping
       </button>
     </div>
   );
