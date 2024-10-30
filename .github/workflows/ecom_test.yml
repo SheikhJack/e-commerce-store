@@ -31,6 +31,6 @@ jobs:
             run: npm install    
 
           - name: Test with Next.js version ${{ matrix.nextjs-version }}
-            run: npm add next@${{ matrix.nextjs-version }} && npm test
+            run: npm install next@${{ matrix.nextjs-version }} && npm test
           
           
