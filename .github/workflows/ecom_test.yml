@@ -16,9 +16,6 @@ jobs:
             matrix:
                 nextjs-version: [14]
                 
-        env:
-          MODE: "dev"
-
         steps:
           - uses: actions/checkout@v3
           
