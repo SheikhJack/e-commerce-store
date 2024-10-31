@@ -44,3 +44,12 @@ type OrderItemType = {
   quantity: number;
   _id: string;
 }
+
+type CartItem = {
+  _id: string;
+  price: number;
+  quantity: number;
+  color: string;
+  size: string;
+  item: ProductType; 
+};
