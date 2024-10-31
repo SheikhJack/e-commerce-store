@@ -96,14 +96,15 @@ const ProductInfo = ({ productInfo }: { productInfo: ProductType }) => {
         className="outline text-base-bold py-3 rounded-lg hover:bg-black hover:text-white"
         onClick={() => {
           cart.addItem({
-            _id: productInfo._id || "defaultId",
-            price: productInfo.price || 0,
-            item: productInfo, // Or include only necessary fields if `item` isn't part of `CartItem`
+            _id: productInfo._id, 
+            price: productInfo.price,
+            item: productInfo, 
             quantity,
             color: selectedColor,
             size: selectedSize,
           });
         }}
+        
       >
         Add To Cart
       </button>
