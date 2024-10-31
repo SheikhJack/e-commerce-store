@@ -87,8 +87,9 @@ const BankingDetails = () => {
     <div className="flex flex-col items-center justify-center h-screen ">
       <h1 className="text-heading4-bold mb-5">Banking Details</h1>
       <p>Please use the following details to complete your payment:</p>
-      <p>Bank Name: XYZ Bank</p>
-      <p>Account Number: 123456789</p>
+      <p>Bank: Stanbic Bank Botswana</p>
+      <p>Account Number: 9060006372916</p>
+      <p>Branch: Fairgrounds Branch</p>
       <p>Reference: Use your order ID as the reference: {user?.id}</p>
       <button
         className="border rounded-lg text-body-bold bg-white py-3 p-5 mt-10 hover:bg-black hover:text-white"
