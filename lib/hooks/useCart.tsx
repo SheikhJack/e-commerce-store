@@ -35,8 +35,19 @@ const useCart = create(
           return toast("Item already in cart");
         }
 
-        set({ cartItems: [...currentItems, { item, quantity, color, size }] });
-        toast.success("Item added to cart", { icon: "🛒" });
+        set({
+          cartItems: [
+            ...currentItems,
+            {
+              _id: item._id,
+              price: item.price,
+              item, // Pass the whole item object here
+              quantity,
+              color,
+              size,
+            },
+          ],
+        });
       },
       removeItem: (idToRemove: String) => {
         const newCartItems = get().cartItems.filter(
