@@ -6,6 +6,9 @@ import { MinusCircle, PlusCircle } from "lucide-react";
 
 import useCart from "@/lib/hooks/useCart";
 
+
+
+
 const ProductInfo = ({ productInfo }: { productInfo: ProductType }) => {
   const [selectedColor, setSelectedColor] = useState<string>(
     productInfo.colors[0]
@@ -97,6 +100,8 @@ const ProductInfo = ({ productInfo }: { productInfo: ProductType }) => {
             quantity,
             color: selectedColor,
             size: selectedSize,
+            _id: productInfo._id || "defaultId",
+            price: productInfo.price || 0, 
           });
         }}
       >
