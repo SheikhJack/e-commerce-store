@@ -14,6 +14,7 @@ interface UserResource {
 }
 
 interface CartItem {
+  item: any;
   _id: string;
   price: number;
   color?: string;
@@ -32,6 +33,7 @@ const BankingDetails = () => {
   const customer = user? {
     id: user.id,
     email: user.emailAddresses[0].emailAddress,
+    username: user.username
   }: null;
 
   console.log("user:", user)
@@ -42,45 +44,46 @@ const BankingDetails = () => {
     console.log("Customer data:", user);
     console.log("Cart items at handleOrder execution:", cart.cartItems);
   
-      if (user) {
-        const { id, emailAddresses, username } = user as unknown as UserResource;
+    if (user) {
+      const { id, emailAddresses, username } = user as unknown as UserResource;
   
-        try {
-          const res = await fetch(`${baseUrl}/orders`, {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              cartItems: cart.cartItems.map((item: CartItem) => ({
-                item: {
-                  _id: item._id,
-                  price: item.price,
-                  color: item.color || "defaultColor",
-                  size: item.size || "defaultSize",
-                },
-                quantity: item.quantity,
-              })),
-              user: { id, emailAddresses, username },
-            }),
-          });
+      try {
+        const res = await fetch(`${baseUrl}/orders`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            cartItems: cart.cartItems.map((cartItem: CartItem) => ({
+              item: {
+                _id: cartItem.item._id,  // Access _id from the nested item object
+                price: cartItem.item.price, // Access price from the nested item object
+                color: cartItem.color || "defaultColor",
+                size: cartItem.size || "defaultSize",
+              },
+              quantity: cartItem.quantity,
+            })),
+            user: { id, emailAddresses, username },
+          }),
+        });
   
-          if (res.ok) {
-            const data = await res.json();
-            console.log("Order created successfully:", data);
-            cart.clearCart();
-            router.push("/order-confirmation");
-          } else {
-            const errorData = await res.json();
-            console.error("Order failed:", errorData);
-          }
-        } catch (error) {
-          console.error("Order failed:", error);
+        if (res.ok) {
+          const data = await res.json();
+          console.log("Order created successfully:", data);
+          cart.clearCart();
+          router.push("/order-confirmation");
+        } else {
+          const errorData = await res.json();
+          console.error("Order failed:", errorData);
         }
-      } else {
-        console.error("User is not available. Please log in or refresh the page.");
+      } catch (error) {
+        console.error("Order failed:", error);
       }
+    } else {
+      console.error("User is not available. Please log in or refresh the page.");
+    }
   };
+  
   
 
   return (
