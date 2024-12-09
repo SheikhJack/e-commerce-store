@@ -105,3 +105,4 @@ const BankingDetails = () => {
 };
 
 export default BankingDetails;
+
